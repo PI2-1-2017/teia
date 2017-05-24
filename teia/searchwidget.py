@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 
-from teia.stream import VideoThread
+from teia.videostream import VideoStream
 # Ui
 from teia.ui.ui_search_widget import Ui_SearchWidget
 
@@ -18,17 +18,17 @@ class SearchWidget(QtWidgets.QWidget, Ui_SearchWidget):
         self.setMinimumWidth(800)
         self.setMinimumHeight(600)
 
-        self.videoThread = VideoThread(self.frameSize().width(), self.frameSize().height())
-        self.videoThread.start()
-        self.videoThread.newFrame.connect(self.update_frame)
-
     def stream(self):
         self.searching = not self.searching
         if self.searching:
             print ("start searching")
+            self.videoStream = VideoStream()
+            self.videoStream.newFrame.connect(self.update_frame)
+            self.videoStream.start()
             self.show()
         else:
             print ("stop searching")
+            self.videoStream.quit()
             self.hide()
 
     def update_frame(self, image):
@@ -44,4 +44,4 @@ class SearchWidget(QtWidgets.QWidget, Ui_SearchWidget):
         qtPainter.end()
 
     def closeEvent(self, event):
-        self.videoThread.stop()
+        self.videoStream.stop()
