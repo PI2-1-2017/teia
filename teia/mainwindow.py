@@ -30,7 +30,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_TeiaMainWindow):
         self.show()
 
     def upload_image(self):
-        image = ImageUploader()
+        image = ImageUploader().inputFile()
+        self.searchFrame.setTarget(image)
 
     def stream(self):
         self.searching = not self.searching

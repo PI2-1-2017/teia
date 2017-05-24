@@ -10,6 +10,7 @@ class SearchWidget(QtWidgets.QWidget, Ui_SearchWidget):
         super().__init__(layout)
         self.searching = None
         self.image = None
+        self.target = None
         self.setupUi(self)
         self.initUI()
         self.hide()
@@ -17,12 +18,13 @@ class SearchWidget(QtWidgets.QWidget, Ui_SearchWidget):
     def initUI(self):
         self.setMinimumWidth(800)
         self.setMinimumHeight(600)
+        self.videoStream = None
 
     def stream(self):
         self.searching = not self.searching
         if self.searching:
             print ("start searching")
-            self.videoStream = VideoStream()
+            self.videoStream = VideoStream(self.frameSize().width(), self.frameSize().height(), self.target)
             self.videoStream.newFrame.connect(self.update_frame)
             self.videoStream.start()
             self.show()
@@ -42,6 +44,11 @@ class SearchWidget(QtWidgets.QWidget, Ui_SearchWidget):
         if self.image:
             qtPainter.drawImage(QtCore.QPoint(0, 0), self.image)
         qtPainter.end()
+
+    def setTarget(self, target):
+        self.target = target
+        if self.videoStream:
+            self.videoStream.setTarget(target)
 
     def closeEvent(self, event):
         self.videoStream.stop()

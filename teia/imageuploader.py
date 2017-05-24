@@ -5,11 +5,13 @@ class ImageUploader(QWidget):
 
 	def __init__(self):
 		super().__init__()
-		self.openFileDialog()
+		self.fileName = None
 
-	def openFileDialog(self):
+	def inputFile(self):
 		options = QFileDialog.Options()
 		options |= QFileDialog.DontUseNativeDialog
 		fileName, _ = QFileDialog.getOpenFileName(self, "Selecionar Imagem", "/home", "Images (*.png *.xpm *.jpg)", options=options)
 		if fileName:
-			return fileName
+			self.fileName = fileName
+
+		return self.fileName
