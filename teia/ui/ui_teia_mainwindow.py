@@ -30,7 +30,7 @@ class Ui_TeiaMainWindow(object):
         self.gridLayout.addWidget(self.startButton, 0, 0, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.searchFrame = QtWidgets.QWidget(self.layoutWidget)
-        self.searchFrame.setMinimumSize(QtCore.QSize(800, 600))
+        self.searchFrame.setMinimumSize(QtCore.QSize(640, 360))
         self.searchFrame.setObjectName("SearchFrame")
         self.gridLayout_2.addWidget(self.searchFrame, 1, 0, 1, 1)
         MainWindow.setCentralWidget(self.layoutWidget)
