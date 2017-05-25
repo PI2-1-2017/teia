@@ -60,6 +60,10 @@ Clone o repositório.
 https://github.com/PI2-1-2017/teia.git
 ```
 
+```
+cd teia
+```
+
 Execute por meio do comando:
 
 ```
