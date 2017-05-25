@@ -57,7 +57,7 @@ pip3 install pyqt5
 Clone o repositório.
 
 ```
-https://github.com/PI2-1-2017/ReconhecimentoDeFace.git
+https://github.com/PI2-1-2017/teia.git
 ```
 
 Execute por meio do comando:
