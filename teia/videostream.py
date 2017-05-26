@@ -62,7 +62,7 @@ class VideoStream(QtCore.QThread):
             name = "Desconhecido"
 
             if match[0]:
-                name = "Bruno Pinheiro"
+                name = "Alvo encontrado"
 
             face_names.append(name)
 
