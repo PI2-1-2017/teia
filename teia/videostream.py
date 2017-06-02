@@ -1,11 +1,12 @@
 import sys
 import cv2
-import numpy
+import numpy as np
 from threading import Thread
 from PyQt5 import QtCore, QtGui
 import face_recognition
 import dlib
 import openface
+from skimage.feature import local_binary_pattern
 
 class VideoStream(QtCore.QThread):
 
@@ -37,19 +38,11 @@ class VideoStream(QtCore.QThread):
                 cv2.rectangle(self.frame, (shape.rect.left()*4, shape.rect.top()*4), (shape.rect.right()*4, shape.rect.bottom()*4), (0, 255, 0), 1)
 
                 aligned_face = self.face_aligner.align(534, small_frame, d, landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
-                aligned_faces.push(aligned_face)
+                aligned_faces.append(aligned_face)
 
-
-
-            # for (top, right, bottom, left) in (face_locations):
-            #     # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-            #     top *= 4
-            #     right *= 4
-            #     bottom *= 4
-            #     left *= 4
-            #
-            #     # Draw a box around the face
-            #     cv2.rectangle(self.frame, (left, top), (right, bottom), (0, 255, 0), 1)
+            if self.target != None:
+                for face in aligned_faces:
+                    self.lbp_match(self.target, face)
 
             img = cv2.resize(self.frame, (self.window_width, self.window_height), interpolation=cv2.INTER_CUBIC)
 
@@ -68,18 +61,23 @@ class VideoStream(QtCore.QThread):
 
     def setTarget(self, target):
         image = face_recognition.load_image_file(target)
-        self.target = face_recognition.face_encodings(image)[0]
+        self.target = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
+    def kullback_leibler_divergence(self, p, q):
+        p = np.asarray(p)
+        q = np.asarray(q)
+        filt = np.logical_and(p != 0, q != 0)
 
-    def facereq(self, face_locations):
-        for (top, right, bottom, left) in (face_locations):
-            # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-            top *= 2
-            right *= 2
-            bottom *= 2
-            left *= 2
+        return np.sum(p[filt] * np.log2(p[filt] / q[filt]))
 
-            # Draw a box around the face
-            cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 1)
-
-        return frame
+    def lbp_match(self, ref, img):
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        lbp = local_binary_pattern(img, 24, 8, 'uniform')
+        n_bins = int(lbp.max() + 1)
+        hist, _ = np.histogram(lbp, normed=True, bins=n_bins, range=(0, n_bins))
+        ref_hist, _ = np.histogram(ref, normed=True, bins=n_bins, range=(0, n_bins))
+        score = self.kullback_leibler_divergence(hist, ref_hist)
+        print (score)
+        if score < 0.8:
+            return True
+        return False
