@@ -48,7 +48,7 @@ class VideoStream(QtCore.QThread):
 
 
     def facereq(self, frame):
-        small_frame = cv2.resize(frame, (0, 0), fx=0.5, fy=0.5)
+        small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
         face_locations = []
         face_names = []
         # Find all the faces and face encodings in the current frame of video
@@ -69,10 +69,10 @@ class VideoStream(QtCore.QThread):
         # Display the results
         for (top, right, bottom, left), name in zip(face_locations, face_names):
             # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-            top *= 2
-            right *= 2
-            bottom *= 2
-            left *= 2
+            top *= 4
+            right *= 4
+            bottom *= 4
+            left *= 4
 
             # Draw a box around the face
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
