@@ -4,6 +4,8 @@ import numpy
 from threading import Thread
 from PyQt5 import QtCore, QtGui
 import face_recognition
+import dlib
+import openface
 
 class VideoStream(QtCore.QThread):
 
@@ -17,6 +19,9 @@ class VideoStream(QtCore.QThread):
         if target:
             self.setTarget(target)
         self.target = None
+        self.predictor = dlib.shape_predictor("./models/shape_predictor_68_face_landmarks.dat")
+        self.detector = dlib.get_frontal_face_detector()
+        self.face_aligner = openface.AlignDlib("./models/shape_predictor_68_face_landmarks.dat")
 
     def run(self):
         self.stream = cv2.VideoCapture(-1)
@@ -25,17 +30,26 @@ class VideoStream(QtCore.QThread):
             self.grabbed, self.frame = self.stream.read()
 
             small_frame = cv2.resize(self.frame, (0, 0), fx=0.25, fy=0.25)
-            face_locations = face_recognition.face_locations(small_frame)
+            face_locations = self.detector(small_frame, 1)
+            aligned_faces = []
+            for k, d in enumerate(face_locations):
+                shape = self.predictor(small_frame, d)
+                cv2.rectangle(self.frame, (shape.rect.left()*4, shape.rect.top()*4), (shape.rect.right()*4, shape.rect.bottom()*4), (0, 255, 0), 1)
 
-            for (top, right, bottom, left) in (face_locations):
-                # Scale back up face locations since the frame we detected in was scaled to 1/4 size
-                top *= 4
-                right *= 4
-                bottom *= 4
-                left *= 4
+                aligned_face = self.face_aligner.align(534, small_frame, d, landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
+                aligned_faces.push(aligned_face)
 
-                # Draw a box around the face
-                cv2.rectangle(self.frame, (left, top), (right, bottom), (0, 255, 0), 1)
+
+
+            # for (top, right, bottom, left) in (face_locations):
+            #     # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+            #     top *= 4
+            #     right *= 4
+            #     bottom *= 4
+            #     left *= 4
+            #
+            #     # Draw a box around the face
+            #     cv2.rectangle(self.frame, (left, top), (right, bottom), (0, 255, 0), 1)
 
             img = cv2.resize(self.frame, (self.window_width, self.window_height), interpolation=cv2.INTER_CUBIC)
 
