@@ -33,6 +33,10 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 
 	def exit_system(self):
 		self.close()
+
+	def home_main_call(self):
+		srch = search_target()
+		ext = exit_system()
 		
 
 
