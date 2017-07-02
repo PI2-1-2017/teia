@@ -40,3 +40,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_TeiaMainWindow):
         else:
             self.startButton.setText('Iniciar Busca')
         self.searchFrame.stream()
+
+    def main_call(self):
+        img = upload_image()
+        strm = stream()
