@@ -17,9 +17,6 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 		self.setMinimumHeight(300)
 
 
-		# Text
-		#self.teiaProject.
-
 		# Buttons
 		self.searchTargetButton.clicked.connect(self.search_target)
 		self.tecnicalButton.clicked.connect(self.tecnical)

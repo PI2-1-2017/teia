@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="image2">
+    <file>teia2.PNG</file>
+  </qresource>
+  <qresource/>
+</RCC>

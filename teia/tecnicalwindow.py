@@ -14,22 +14,18 @@ class TecnicalWindow(QtWidgets.QMainWindow, Ui_TecnicalWindow):
 		self.setMinimumWidth(400)
 		self.setMinimumHeight(300)
 
-
-		# Text
-		#self.teiaProject.
-
 		# Buttons
-		self.backButton.clicked.connect(self.back_home_window)
+		self.backButton.clicked.connect(self.close_window)
 
 		# Show window
 		self.show()
 	
 
-	def back_home_window(self):
+	def close_window(self):
 		self.close()
 
 	def tec_main_call(self):
-		back = back_home_window()
+		back = close_window()
 		
 
 
