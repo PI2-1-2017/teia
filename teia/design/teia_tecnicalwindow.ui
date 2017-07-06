@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>627</width>
+    <height>447</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="1">
+       <widget class="QPushButton" name="backButton">
+        <property name="text">
+         <string>Voltar</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Especificações Técnicas do Drone&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;----------------------------------------------------------------------------------------------&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Motores Tipo Brushless - DJI E300212 (x4)&lt;/p&gt;&lt;p&gt;Bateria Power LiPo 5200 mAh 30c 4s (x1)&lt;/p&gt;&lt;p&gt;Hélices DJI 9443 (x2 pares)&lt;/p&gt;&lt;p&gt;---------------------------------------------------------------------------------------------------------------------------------------&lt;/p&gt;&lt;p&gt;Controladora de Vôo: Arduino Mega&lt;/p&gt;&lt;p&gt;Acelerômetro e Giroscópio: MPU-6050&lt;/p&gt;&lt;p&gt;Controlador Eletrônico de Velocidade: Hobbysky Simonk 30A&lt;/p&gt;&lt;p&gt;Módulo com Microcontrolador ARM: ESP8266&lt;/p&gt;&lt;p&gt;Transmissor de Imagem: Eachine TS832 Boscam&lt;/p&gt;&lt;p&gt;Receptor de Imagem: RC832 Boscam&lt;/p&gt;&lt;p&gt;Rádio Controle: FlySky FS-i6&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="text.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtWidgets
 from teia.ui.ui_teia_homewindow import Ui_HomeWindow
 from teia.mainwindow import MainWindow
+from teia.tecnicalwindow import TecnicalWindow
 
 class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 
@@ -21,7 +22,7 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 
 		# Buttons
 		self.searchTargetButton.clicked.connect(self.search_target)
-		#self.technicalEspecifications.clicked.connect(self.stream)
+		self.tecnicalButton.clicked.connect(self.tecnical)
 		self.exitButton.clicked.connect(self.exit_system)
 
 
@@ -30,6 +31,9 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 	
 	def search_target(self):
 		search = MainWindow().main_call()
+
+	def tecnical(self):
+		tec = TecnicalWindow().tec_main_call()
 
 	def exit_system(self):
 		self.close()
