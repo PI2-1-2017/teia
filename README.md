@@ -69,8 +69,5 @@ Execute por meio do comando:
 ```
 python3 main.py
 ```
-
-
-
-
-
+ffmpeg -i http://15.0.25.236:4747/mjpegfeed http://localhost:8090/cam2.ffm
+ffserver -d -f /etc/ffserver.conf

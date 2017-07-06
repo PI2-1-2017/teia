@@ -25,7 +25,8 @@ class VideoStream(QtCore.QThread):
         self.face_aligner = openface.AlignDlib("./models/shape_predictor_68_face_landmarks.dat")
 
     def run(self):
-        self.stream = cv2.VideoCapture(-1)
+        # url = urllib.request.urlopen('http://localhost:8090/cam2.mjpeg')
+        self.stream = cv2.VideoCapture('http://localhost:8090/cam2.mjpeg')
 
         while self.streaming:
             self.grabbed, self.frame = self.stream.read()
