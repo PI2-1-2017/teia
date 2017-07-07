@@ -23,6 +23,7 @@ class Ui_WelcomeWindow(object):
         self.gridLayout.addWidget(self.image, 0, 0, 1, 1)
         self.enterButton = QtWidgets.QPushButton(self.layoutWidget)
         self.enterButton.setObjectName("enterButton")
+        self.enterButton.setToolTip('Entrar')
         self.gridLayout.addWidget(self.enterButton, 1, 0, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.layoutWidget)
