@@ -15,17 +15,11 @@ class TecnicalWindow(QtWidgets.QMainWindow, Ui_TecnicalWindow):
 		self.setMinimumHeight(300)
 
 		# Buttons
-		self.backButton.clicked.connect(self.close_window)
+		self.backButton.clicked.connect(self.close)
 
 		# Show window
 		self.show()
 	
-
-	def close_window(self):
-		self.close()
-
-	def tec_main_call(self):
-		back = close_window()
 		
 
 

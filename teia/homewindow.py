@@ -16,12 +16,10 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 		self.setMinimumWidth(400)
 		self.setMinimumHeight(300)
 
-
 		# Buttons
 		self.searchTargetButton.clicked.connect(self.search_target)
 		self.tecnicalButton.clicked.connect(self.tecnical)
-		self.exitButton.clicked.connect(self.exit_system)
-
+		self.exitButton.clicked.connect(self.close)
 
 		# Show window
 		self.show()
@@ -30,14 +28,11 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 		search = MainWindow().main_call()
 
 	def tecnical(self):
-		tec = TecnicalWindow().tec_main_call()
-
-	def exit_system(self):
-		self.close()
+		tec = TecnicalWindow().__init__()
 
 	def home_main_call(self):
 		srch = search_target()
-		ext = exit_system()
+		tcn = tecnical()
 		
 
 
