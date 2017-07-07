@@ -30,6 +30,10 @@ class Ui_HomeWindow(object):
         self.tecnicalButton.setEnabled(True)
         self.tecnicalButton.setObjectName("tecnicalButton")
         self.gridLayout.addWidget(self.tecnicalButton, 2, 0, 1, 1)
+        self.helpButton = QtWidgets.QPushButton(self.layoutWidget)
+        self.helpButton.setEnabled(True)
+        self.helpButton.setObjectName("helpButton")
+        self.gridLayout.addWidget(self.helpButton, 3, 0, 1, 1)
         self.image2 = QtWidgets.QLabel(self.layoutWidget)
         self.image2.setObjectName("image2")
         self.gridLayout.addWidget(self.image2, 0, 0, 1, 1)
@@ -45,6 +49,7 @@ class Ui_HomeWindow(object):
         self.exitButton.setText(_translate("HomeWindow", "Sair"))
         self.searchTargetButton.setText(_translate("HomeWindow", "Procurar Alvo"))
         self.tecnicalButton.setText(_translate("HomeWindow", "Especificações Técnicas"))
+        self.helpButton.setText(_translate("HomeWindow", "Ajuda ao usuario"))
         self.image2.setText(_translate("HomeWindow", "<html><head/><body><p align=\"center\"><img src=\":/image2/teia2.PNG\"/></p></body></html>"))
 
 from teia.design import image2

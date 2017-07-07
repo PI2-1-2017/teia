@@ -7,8 +7,9 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
 
-class Ui_TecnicalWindow(object):
+class Ui_HelpWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(600, 400)
@@ -25,6 +26,8 @@ class Ui_TecnicalWindow(object):
         self.gridLayout.addWidget(self.backButton, 3, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
+        self.label.setWordWrap(True)
+        self.label.setAlignment(Qt.AlignJustify)
         self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.layoutWidget)
@@ -36,6 +39,6 @@ class Ui_TecnicalWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("TecnicalWindow", "Form"))
         self.backButton.setText(_translate("TecnicalWindow", "Voltar"))
-        self.label.setText(_translate("TecnicalWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Especificações Técnicas do Drone</span></p><p><span style=\" font-size:14pt; font-weight:600;\">----------------------------------------------------------------------------------------------</span></p>s<p>Motores Tipo Brushless - DJI E300212 (x4)</p><p>Bateria Power LiPo 5200 mAh 30c 4s (x1)</p><p>Hélices DJI 9443 (x2 pares)</p><p>---------------------------------------------------------------------------------------------------------------------------------------</p><p>Controladora de Vôo: Arduino Mega</p><p>Acelerômetro e Giroscópio: MPU-6050</p><p>Controlador Eletrônico de Velocidade: Hobbysky Simonk 30A</p><p>Módulo com Microcontrolador ARM: ESP8266</p><p>Transmissor de Imagem: Eachine TS832 Boscam</p><p>Receptor de Imagem: RC832 Boscam</p><p>Rádio Controle: FlySky FS-i6</p></body></html>"))
+        self.label.setText(_translate("TecnicalWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">Ajuda ao usuário</span></p><p><span style=\" font-size:14pt; font-weight:600;\"> </span></p><p>O sistema Teia visa permitir o reconhecimento de uma pessoa, através da captura de sua face, realizada por uma câmera posicionada em um drone. </p><p>    Para efetuar essa busca, é necessário selecionar a opção no Menu principal de 'Procurar Alvo'.</p><p> Na tela de busca, selecione a opção 'Iniciar busca'. Quando a busca iniciar, a transmissão do video aparecerá em tempo real.</p><p> Em seguida, para escolher o alvo a ser buscado, basta selecionar a opção 'Imagem', buscar a imagem dele na máquina e selecioná-la.</p><p>Então o sistema realizará a busca, retornando o resultado.</p></body></html>"))
 
 from teia.design import text
