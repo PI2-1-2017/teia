@@ -4,6 +4,7 @@ from teia.ui.ui_teia_homewindow import Ui_HomeWindow
 from teia.mainwindow import MainWindow
 from teia.tecnicalwindow import TecnicalWindow
 from teia.helpwindow import HelpWindow
+from teia.messageconfirmation import MessageConfirmation
 
 class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 
@@ -16,12 +17,13 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 		self.setWindowTitle('Projeto Teia')
 		self.setMinimumWidth(400)
 		self.setMinimumHeight(300)
+		self.move(0, 0)
 
 		# Buttons
 		self.searchTargetButton.clicked.connect(self.search_target)
 		self.tecnicalButton.clicked.connect(self.tecnical)
 		self.helpButton.clicked.connect(self.help)
-		self.exitButton.clicked.connect(self.close)
+		self.exitButton.clicked.connect(self.teste)
              
 		# Show window
 		self.show()
@@ -34,6 +36,11 @@ class HomeWindow(QtWidgets.QMainWindow, Ui_HomeWindow):
 
 	def help(self):
 		help = HelpWindow().__init__()
+
+	def teste(self):
+		msg = MessageConfirmation().showMessage(self)
+		if msg:
+			self.close()
 
 	def home_main_call(self):
 		srch = search_target()
