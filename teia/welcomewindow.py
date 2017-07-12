@@ -15,6 +15,7 @@ class WelcomeWindow(QtWidgets.QMainWindow, Ui_WelcomeWindow):
 		self.setWindowTitle('Bem Vindo!')
 		self.setMinimumWidth(400)
 		self.setMinimumHeight(300)
+		self.move(0, 0)
 
 		# Buttons
 		self.enterButton.clicked.connect(self.enter_system)

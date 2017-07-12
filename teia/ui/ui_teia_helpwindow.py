@@ -23,6 +23,7 @@ class Ui_HelpWindow(object):
         self.backButton.setAutoDefault(False)
         self.backButton.setDefault(False)
         self.backButton.setObjectName("backButton")
+        self.backButton.setToolTip('Voltar')
         self.gridLayout.addWidget(self.backButton, 3, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
